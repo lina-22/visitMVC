@@ -20,7 +20,7 @@ if(isset($_GET["path"])){
     $path=filter_var($_GET["path"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);    
 }
 require("model/bdd.php");
-// $monPDO=etablirCo();
+$monPDO=etablirCo();
 switch($path){
      case"main":
         require ("controler/controler.php");

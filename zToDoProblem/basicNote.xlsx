@@ -1,0 +1,113 @@
+<?php
+
+//Recuperer les pays de la bdd
+//Créer countryManager et la classe métier country
+// require le manager et instancier un objetManager
+//Créer une méthode fetchAllCountries
+//Invoquer la méthode sur l'objetManager
+//require la vue  
+
+
+
+
+
+
+
+//Toutes les destinations dans des cards
+            //Etape 1 Creation de destinationManager et  la classe destiniation
+            //Etape 2 Creation de fetchAllDestinations, Recuperer les pays de la bdd
+            //Etape 3 : instancier un objet destinationManager
+            //Etape 4 : dans une variable recuperer toute les destinations grace a fetchAllDestinations
+            //Etape 5 : Créer la vue qui va afficher les cards et la required ici
+
+
+//All destinations in cards
+             //Step 1 Creation of destinationManager and destination class
+             //Step 2 Creation of fetchAllDestinations, Get the countries from the database at managers folder
+             //Step 3: filter_var for the variable what need to processe at this current stage
+             //Step 4: instantiate/represent a destinationManager object
+             //Step 5: in a variable (like resultat) retrieve(getBack or recover/ have returned) all the destinations thanks to fetchAllDestinations
+             //Step 6: Create the view that will display the cards and the required here
+
+
+
+?>       
+
+1. //at (view) formRegister o session variable add :
+
+    <?php
+        if(isset($_SESSION["error"])){
+            ?><div><?=$_SESSION["error"]?></div>
+        <?php 
+        unset($_SESSION["error"]); }
+        elseif(isset($_SESSION["msg"])){
+            ?> <div><?= $_SESSION["msg"]?></div>
+        <?php unset ($_SESSION["msg"]); }
+       ?>
+
+2. message passing by th eway of $_SESSION at controler section processRegister
+
+if($resultat==true){
+            $_SESSION["msg"]="User registered successfully";
+             header("location:?path=user&action=formLogin"); //rediriger vers la page de login
+        }
+        else{
+            $_SESSION["error"]="registration failed";
+            header("location:?path=user&action=formRegister");
+        }
+        break;
+
+
+
+
+  3.      message passing after loggedin:
+
+        $_SESSION["msg"]="Logged in successfully ! <br> ";
+                
+                if($_SESSION["role"]=="superAdmin"){
+                    $_SESSION["msg"].=" Welcome Super Admin !";
+                    header("location:?path=admin&action=dashboard");
+                }
+                else if($_SESSION["role"]=="admin"){
+                    $_SESSION["msg"].=" Welcome Admin !";
+                }
+                else{
+                    $_SESSION["msg"].=" Welcome Custumer !";
+                }
+
+
+
+
+ 4..      case "logout":
+            if(isset($_SESSION["email"])){
+                unset($_SESSION);
+                session_destroy();
+                header("location:?path=user&action=formLogin");
+            }
+            break;     
+    
+
+            problem:
+
+
+5.            //this lines at the user.class.php
+
+            public function role($lePDO){
+        $objectRoleManager= new RoleManager($lePDO);
+        $role=$objectRoleManager->fetchRoleByIdRole($this->getIdRole());
+        return $role;
+    }      
+
+6. at destination.class;
+   public function getDescriptionTruncated($chars=70){
+        
+        $text=$this->description;
+        if (strlen($text) <= $chars) {
+            return $text;
+        }
+        $text = $text." ";
+        $text = substr($text,0,$chars);
+        $text = substr($text,0,strrpos($text,' '));
+        $text = $text."...";
+        return $text;
+        
