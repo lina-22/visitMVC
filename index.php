@@ -4,15 +4,15 @@ $_SESSION["token"]=$_SESSION["token"]??bin2hex(random_bytes(32));
 var_dump($_SESSION);
 
 // ****My problem*****// ****My problem*****// ****My problem*****// ****My problem*****
-function myautoloader($class){
-    if(strstr($class, "Manager")){
-        include 'model/managers/' . $class . '.php';
-    }
-    else{
-        include 'model/classes/' .$class . '.class.php';
-    }
-}
-spl_autoload_register('my_autoloader');
+// function myautoloader($class){
+//     if(strstr($class, "Manager")){
+//         include 'model/managers/' . $class . '.php';
+//     }
+//     else{
+//         include 'model/classes/' .$class . '.class.php';
+//     }
+// }
+// spl_autoload_register('my_autoloader');
 // ****My problem*****// ****My problem*****// ****My problem*****// ****My problem*****
 
 $path="main";
