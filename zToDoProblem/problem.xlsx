@@ -106,3 +106,9 @@ if($resultat==true){
     {
         $this->lePDO=$paramPDO;
     }
+
+    2. bellow lines are not necessary at // updateLangage/  at LanguageManager why??  
+    $sql->setFetchMode(PDO::FETCH_CLASS, "Langage");
+        $resultat = $sql->fetch();
+
+    3. why private $lePDO;??    
