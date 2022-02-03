@@ -22,5 +22,65 @@ class LangageManager{
             return false;
         }
     }
+
+    // fetchLanguageByIdLanguage/
+    public function fetchLanguageByIdLanguage($id){
+    try { 
+        $connex=$this->lePDO;
+        $sql = $connex->prepare("SELECT * FROM languages WHERE idLanguage=:id");
+        $sql->bindParam(":id",$id);
+        $sql->execute();
+        $sql->setFetchMode(PDO::FETCH_CLASS, "Langage");
+        $resultat = $sql->fetch();
+        return $resultat;
+    
+    } catch (PDOException $error) {
+        echo $error->getMessage();
+        return false;
+    }
+}
+    // updateLangage/  
+
+    public function updateLangage ($id, $langageName){
+        try {
+            $connex=$this->lePDO;
+            $sql=$connex->prepare("UPDATE languages set name=:name WHERE idLanguage=:id");
+            $sql->bindParam(":name", $langageName);
+            $sql->bindParam(":id", $id);
+            $sql->execute();
+            return true;
+        }
+        catch (PDOException $error){
+            echo $error->getMessage();
+            return false;
+        }
+    }
+    // createLangage/ 
+     public function  createLangage ($langageName){
+      try{  $connex=$this->lePDO;
+         $sql=$connex->prepare("INSERT INTO laguages values(null, name=:langageName)");
+         $sql->bindParam(":langageName", $langageName);
+         $sql->execute();
+         return true;
+     } catch (PDOException $error){
+         $error->getMessage();
+         return false;
+
+     }
+    } 
+    // deleteLangage
+
+    public function deleteLangage($idLanguage){
+        try{
+            $connex=$this->lePDO;
+            $sql=$connex->prepare("DELETE FROM languages WHERE idLanguage=:id");
+            $sql->bindParam(":id",$idLanguage);
+            $sql->execute();
+            return true;
+        } catch (PDOException $error){
+            echo $error->getMessage();
+            return false;
+        }
+    }
 }?>
-fetchLanguageByIdLanguage/ updateLangage/  createLangage/ deleteLangage
+

@@ -97,3 +97,12 @@ if($resultat==true){
 
             relation btn createReservation($objectReservation,$idUser){ and   values(null,:seat,:depatureDate,
             NOW(),:idDestination,:idUser)");   
+
+
+      1.      03/02/22
+
+            nessecity of this lines bellow:
+                public function __construct($paramPDO)
+    {
+        $this->lePDO=$paramPDO;
+    }
