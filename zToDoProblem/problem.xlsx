@@ -1,70 +1,5 @@
-     
-
-1. //at (view) formRegister o session variable add :
-
-    <?php
-        if(isset($_SESSION["error"])){
-            ?><div><?=$_SESSION["error"]?></div>
-        <?php 
-        unset($_SESSION["error"]); }
-        elseif(isset($_SESSION["msg"])){
-            ?> <div><?= $_SESSION["msg"]?></div>
-        <?php unset ($_SESSION["msg"]); }
-       ?>
-
-2. message passing by th eway of $_SESSION at controler section processRegister
-
-if($resultat==true){
-            $_SESSION["msg"]="User registered successfully";
-             header("location:?path=user&action=formLogin"); //rediriger vers la page de login
-        }
-        else{
-            $_SESSION["error"]="registration failed";
-            header("location:?path=user&action=formRegister");
-        }
-        break;
-
-
-
-
-  3.      message passing after loggedin:
-
-        $_SESSION["msg"]="Logged in successfully ! <br> ";
-                
-                if($_SESSION["role"]=="superAdmin"){
-                    $_SESSION["msg"].=" Welcome Super Admin !";
-                    header("location:?path=admin&action=dashboard");
-                }
-                else if($_SESSION["role"]=="admin"){
-                    $_SESSION["msg"].=" Welcome Admin !";
-                }
-                else{
-                    $_SESSION["msg"].=" Welcome Custumer !";
-                }
-
-
-
-
- 4..      case "logout":
-            if(isset($_SESSION["email"])){
-                unset($_SESSION);
-                session_destroy();
-                header("location:?path=user&action=formLogin");
-            }
-            break;     
     
-
-            problem:
-
-
-5.            //this lines at the user.class.php
-
-            public function role($lePDO){
-        $objectRoleManager= new RoleManager($lePDO);
-        $role=$objectRoleManager->fetchRoleByIdRole($this->getIdRole());
-        return $role;
-    }      
-
+*** reservation.class.php
 
     public function destination($aPDO){
         $objectDestinationManager= new DestinationManager($aPDO);
@@ -73,7 +8,7 @@ if($resultat==true){
     }
 *****My understanding we create a relation with the destination from reservation to get the id of destination like declaire the foriegn key.
 
-6. at destination.class;
+1. at destination.class;
    public function getDescriptionTruncated($chars=70){
         
         $text=$this->description;
@@ -86,7 +21,7 @@ if($resultat==true){
         $text = $text."...";
         return $text;
         
- 7. problem:
+2. problem:
 
      public function createReservation($objectReservation,$idUser){
         try {
@@ -99,7 +34,7 @@ if($resultat==true){
             NOW(),:idDestination,:idUser)");   
 
 
-      1.      03/02/22
+3.      03/02/22
 
             nessecity of this lines bellow:
                 public function __construct($paramPDO)
@@ -107,8 +42,10 @@ if($resultat==true){
         $this->lePDO=$paramPDO;
     }
 
-    2. bellow lines are not necessary at // updateLangage/  at LanguageManager why??  
+4. bellow lines are not necessary at // updateLangage/  at LanguageManager why??  
     $sql->setFetchMode(PDO::FETCH_CLASS, "Langage");
         $resultat = $sql->fetch();
 
     3. why private $lePDO;??    
+
+        
