@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION["token"]=$_SESSION["token"]??bin2hex(random_bytes(32));
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 // ****My problem*****// ****My problem*****// ****My problem*****// ****My problem*****
 // function myautoloader($class){
