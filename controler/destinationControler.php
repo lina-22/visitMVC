@@ -25,8 +25,8 @@
         case "processFormAdd":
             $role=$_SESSION["role"]??false;
             if($role=="admin"||$role=="superAdmin"){
-                $name=filter_var($_GET["name"],FILTER_SANITIZE_STRING);
-                $description=filter_var($_GET["description"],FILTER_SANITIZE_STRING);
+                $name=filter_var($_GET["name"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $description=filter_var($_GET["description"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $openingDate=filter_var($_GET["openingDate"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $closingDate=filter_var($_GET["closingDate"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                 $duration=filter_var($_GET["duration"],FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -45,7 +45,7 @@
                 }
                 else{
                     $_SESSION["error"]="Failed to add the destionation";
-                    header("location:/?path=destination&action=formAdd");
+                    header("location:?path=destination&action=formAdd");
                 }
             }    
             else{
